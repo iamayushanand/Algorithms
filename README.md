@@ -3,7 +3,7 @@ this repo contains some of the algorithms and
 their analysis I will be maintaining it.
 
 #Tree Structure
-
+```
 .
 ├── Analysis
 │   └── sorting
@@ -34,3 +34,4 @@ their analysis I will be maintaining it.
     └── quicksort.java
 
 10 directories, 17 files
+```
