@@ -20,6 +20,10 @@ public class quicksort{
 	 * @params int[] input
 	 *
 	 */
+	public void sort(int[] input){
+		this.input=input;
+		sort(0,input.length-1);
+	}
 	public void sort(int start,int end){
 		
 		/*
@@ -33,9 +37,7 @@ public class quicksort{
 	
 	}
 
-	public quicksort(int[] input){
-		this.input=input;
-	}
+	
 
 	private void quicksortUtil(int start,int end){
 
@@ -88,11 +90,11 @@ public class quicksort{
 		PrintWriter out = new PrintWriter("runTime.dat");
 		int[] testdata =new int[5000];
 		int len=0;
+		quicksort auicksorter = new quicksort();
 		for(int i=0;i<5000;i++){
 			testdata[len++]=new Random().nextInt(100000000);
-			quicksort quicksorter = new quicksort(testdata);
 			long time1=System.nanoTime();
-			quicksorter.sort(0,len-1);
+			quicksorter.sort(testdata);
 			long time2=System.nanoTime();
 			out.println(len+" "+(time2-time1));
 			System.out.println(len+" "+(time2-time1));
