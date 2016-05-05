@@ -36,7 +36,10 @@ public class Graph{
 	int Elength=0;
 	Vertex[] vertices = new Vertex[MAX_V];
 	int time=0;
-
+	
+	public Graph(int n){
+		this.MAX_V=n;
+	}
 	public void addVertex(){
 		vertices[Vlength]=new Vertex(++Vlength);
 	}
