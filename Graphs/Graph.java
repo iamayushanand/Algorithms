@@ -6,10 +6,7 @@ import java.util.*;
  * This java file implements a Graph. This implementation uses
  * adjacency matrix even though adjacency list would have been a little better
  * therefore this implementation assumes that we are dealing with "dense" graphs
- * There are hardcoded values present in the file too like 500 cause I assume that
- * is an upper bound on the number of vertices though it can be extended. There are two
- * algorithms for MST in the graph one of them (Kruskal's algorithm) require Disjoint sets.
- * And a list of Edges sorted by weight thus it takes more memory. If you are not using Kruskal's 
+ * .There are two algorithms for MST in the graph one of them (Kruskal's algorithm) require Disjoint sets.
  * I am planning to change priority queue to Fibonacci Heaps but as of now it is priority queue.
  * For the sake of simplicity I have written Disjoint sets inside this file but you can optionally 
  * put them in another file.I will soon publish some analysis on the following algorithms.
@@ -27,17 +24,17 @@ import java.util.*;
  * Copyright (C) 2016 Ayush Anand
  * */
 public class Graph{
-
-	boolean[][] matrix=new boolean[500][500];
-	boolean[][] transpose = new boolean[500][500];
-	int[][] weight = new int[500][500];
-	int[][] AllPairsShortestPath = new int[500][500];
+	int MAX_V;
+	boolean[][] matrix=new boolean[MAX_V][MAX_V];
+	boolean[][] transpose = new boolean[MAX_V][MAX_V];
+	int[][] weight = new int[MAX_V][MAX_V];
+	int[][] AllPairsShortestPath = new int[MAX_V][MAX_V];
 	
-	Edge[] edges = new Edge[2500];
+	Edge[] edges = new Edge[MAX_V*MAX_V];
 
 	int Vlength=0;
 	int Elength=0;
-	Vertex[] vertices = new Vertex[500];
+	Vertex[] vertices = new Vertex[MAX_V];
 	int time=0;
 
 	public void addVertex(){
@@ -112,7 +109,7 @@ public class Graph{
 		
 	}
 
-	public void getTranspose(){
+	public void generateTranspose(){
 		for(int i=0;i<Vlength;i++){
 			for(int j=0;j<Vlength;j++){
 				transpose[j][i]=matrix[i][j];
@@ -121,9 +118,9 @@ public class Graph{
 		}
 	}
 
-	public void getStronglyConnectedComponents(){
+	public void StronglyConnectedComponents(){
 		DFS(matrix,true);
-		getTranspose();
+		generateTranspose();
 		Arrays.sort(vertices,0,Vlength,new Comparator<Vertex>() {
 			@Override
 			public int compare(Vertex a,Vertex b){
